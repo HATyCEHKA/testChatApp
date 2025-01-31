@@ -4,20 +4,19 @@
       "id": "1",
       "username": "user1",
       "password": "pass1",
-      "status": true
+      "status": false
     },
     {
       "id": "2",
       "username": "user2",
       "password": "pass2",
-      "status": true
+      "status": false
     },
     {
       "id": "3",
       "username": "user3",
       "password": "pass3",
-      "status": false,
-      "is_online": true
+      "status": false
     },
     {
       "id": "10",
@@ -76,227 +75,35 @@
       "id": "1",
       "userId": "1",
       "channelId": 1,
-      "content": "hello 1_1"
+      "content": "hello 1_1",
+      "date": "2025-01-30T17:31:04.894Z"
     },
     {
       "id": "2",
       "userId": 2,
       "channelId": 1,
-      "content": "hello 2_1"
+      "content": "hello 2_1",
+      "date": "2025-01-30T17:46:12.053Z"
     },
     {
       "id": "3",
       "userId": 3,
-      "channelId": 1,
-      "content": "hello 3_1"
+      "channelId": 3,
+      "content": "hello 3_1",
+      "date": "2025-01-30T17:48:16.357Z"
     },
     {
       "id": "4",
       "userId": 2,
       "channelId": 2,
-      "content": "hello 2_2"
+      "content": "hello 2_2",
+      "date": "2025-01-30T17:55:36.674Z"
     },
     {
       "id": "5",
       "userId": 3,
-      "channelId": 2,
-      "content": "hello 3_2"
-    },
-    {
-      "id": "2c67",
-      "channelId": "1",
-      "userId": "2",
-      "content": "testmessxage"
-    },
-    {
-      "id": "c19b",
-      "channelId": "1",
-      "userId": "2",
-      "content": "yuyu"
-    },
-    {
-      "id": "7b51",
-      "channelId": "2",
-      "userId": "2",
-      "content": "test 2"
-    },
-    {
-      "id": "03ae",
-      "channelId": "2",
-      "userId": "2",
-      "content": "test 3"
-    },
-    {
-      "id": "c428",
-      "channelId": "1",
-      "userId": "2",
-      "content": "test6"
-    },
-    {
-      "id": "2ca1",
-      "channelId": "1",
-      "userId": "2",
-      "content": "test68"
-    },
-    {
-      "id": "a422",
-      "channelId": "1",
-      "userId": "2",
-      "content": "test68"
-    },
-    {
-      "id": "5ea4",
-      "channelId": "1",
-      "userId": "2",
-      "content": "yuyuyu"
-    },
-    {
-      "id": "5103",
-      "channelId": "1",
-      "userId": "2",
-      "content": "iii"
-    },
-    {
-      "id": "d724",
-      "channelId": "1",
-      "userId": "2",
-      "content": "aa"
-    },
-    {
-      "id": "cf79",
-      "channelId": "1",
-      "userId": "2",
-      "content": "uiuiuiu"
-    },
-    {
-      "id": "bb0a",
-      "channelId": "1",
-      "userId": "2",
-      "content": "lklk"
-    },
-    {
-      "id": "19eb",
-      "channelId": "1",
-      "userId": "2",
-      "content": "uu"
-    },
-    {
-      "id": "5e7e",
-      "channelId": "1",
-      "userId": "2",
-      "content": "ew"
-    },
-    {
-      "id": "210b",
-      "channelId": "1",
-      "userId": "2",
-      "content": "ioiu"
-    },
-    {
-      "id": "46e1",
-      "channelId": "1",
-      "userId": "2",
-      "content": "yuyuu"
-    },
-    {
-      "id": "e2d7",
-      "channelId": "1",
-      "userId": "2",
-      "content": "dfdf"
-    },
-    {
-      "id": "cdd5",
-      "channelId": "1",
-      "userId": "2",
-      "content": "dfdf"
-    },
-    {
-      "id": "3a4e",
-      "channelId": "1",
-      "userId": "2",
-      "content": "qqq"
-    },
-    {
-      "id": "f48d",
-      "channelId": "1",
-      "userId": "2",
-      "content": "rr"
-    },
-    {
-      "id": "edcc",
-      "channelId": "1",
-      "userId": "2",
-      "content": "ssa"
-    },
-    {
-      "id": "b69f",
-      "channelId": "1",
-      "userId": "2",
-      "content": "adasdd"
-    },
-    {
-      "id": "8a8c",
-      "channelId": "1",
-      "userId": "1",
-      "content": "eeeee!!!!!!!"
-    },
-    {
-      "id": "5cc1",
-      "channelId": "1",
-      "userId": "2",
-      "content": "222222"
-    },
-    {
-      "id": "6745",
-      "channelId": "1",
-      "userId": "2",
-      "content": "444"
-    },
-    {
-      "id": "d0f7",
-      "channelId": "1",
-      "userId": "2",
-      "content": "ttrrt"
-    },
-    {
-      "id": "3d6e",
-      "channelId": "3",
-      "userId": "2",
-      "content": "222"
-    },
-    {
-      "id": "a9a5",
-      "channelId": "1",
-      "userId": "2",
-      "content": "date",
-      "date": "2025-01-30T17:31:04.894Z"
-    },
-    {
-      "id": "fa61",
-      "channelId": "1",
-      "userId": "2",
-      "content": "date22",
-      "date": "2025-01-30T17:46:12.053Z"
-    },
-    {
-      "id": "6206",
-      "channelId": "1",
-      "userId": "2",
-      "content": "date23",
-      "date": "2025-01-30T17:48:16.357Z"
-    },
-    {
-      "id": "e5da",
-      "channelId": "1",
-      "userId": "2",
-      "content": "yuyuy",
-      "date": "2025-01-30T17:55:36.674Z"
-    },
-    {
-      "id": "5692",
-      "channelId": "1",
-      "userId": "2",
-      "content": "eeeee",
+      "channelId": 3,
+      "content": "hello 3_2",
       "date": "2025-01-30T18:09:35.710Z"
     },
     {
@@ -725,6 +532,34 @@
       "userId": "1",
       "content": "44",
       "date": "2025-01-31T07:50:59.691Z"
+    },
+    {
+      "id": "5807",
+      "channelId": "1",
+      "userId": "2",
+      "content": "22",
+      "date": "2025-01-31T10:36:17.632Z"
+    },
+    {
+      "id": "51b4",
+      "channelId": "1",
+      "userId": "1",
+      "content": "11",
+      "date": "2025-01-31T10:36:29.736Z"
+    },
+    {
+      "id": "e82d",
+      "channelId": "3",
+      "userId": "3",
+      "content": "333",
+      "date": "2025-01-31T10:36:47.608Z"
+    },
+    {
+      "id": "34a1",
+      "channelId": "3",
+      "userId": "2",
+      "content": "222",
+      "date": "2025-01-31T10:37:04.902Z"
     }
   ]
 }
