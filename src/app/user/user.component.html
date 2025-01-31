@@ -1,0 +1,21 @@
+<div *ngIf="auth_service.currentUser | async" class="p-3 d-flex vh-100">
+  <div style="margin: auto">
+    <div class="row">
+      <div class="col text-end">{{'Login'|translate}}:</div>
+      <div class="col">{{(auth_service.currentUser | async)?.username}}</div>
+    </div>
+    <div class="row">
+      <div class="col text-end">{{'Password'|translate}}:</div>
+      <div class="col">{{(auth_service.currentUser | async)?.password}}</div>
+    </div>
+    <div class="row">
+      <div class="col text-end d-flex"><span style="margin: auto">{{'Language'|translate}}:</span></div>
+      <div class="col">
+        <select class="form-select" [value]="translate.currentLang" (change)="changeLang($event.target)" >
+          <option (click)="translate.use('en')"> en</option>
+          <option (click)="translate.use('ru')"> ru</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>

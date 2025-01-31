@@ -1,0 +1,7 @@
+<div>
+  <ul class="list-group list-group-flush" style="border-bottom-right-radius: 6px; border-bottom-left-radius: 6px;" *ngIf="Channels()">
+    <ng-container *ngFor="let channel of Channels()">
+      <a class="list-group-item" (click)="select(channel)" [ngClass]="{active: channel==SelectedChannel()}" style="cursor: default">{{channel.name}}</a>
+    </ng-container>
+  </ul>
+</div>

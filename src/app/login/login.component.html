@@ -1,0 +1,14 @@
+<div class="d-flex  align-items-stretch"  style="height: 100vh">
+  <div *ngIf="!(auth_service.isAuthenticated | async)" class="d-flex flex-column justify-content-center mx-auto " (keydown)="keyDown($event)" style="max-width: 300px">
+    <input type="text" class="form-control mb-2" [(ngModel)]="username" [placeholder]="'Login'|translate">
+    <input type="text" class="form-control mb-2" [(ngModel)]="password" [placeholder]="'Password'|translate">
+    <button type="button" class="btn btn-primary" (click)="auth_service.logIn(username, password)" [disabled]="!(username&&password)">
+      {{'Log In'|translate}}
+    </button>
+    <div class="text-danger">{{auth_service.errorMessage | async}}</div>
+  </div>
+
+  <div *ngIf="auth_service.isAuthenticated | async">
+    <h1>{{'Welcome' | translate}}, {{(auth_service.currentUser | async)?.username}}!</h1>
+  </div>
+</div>

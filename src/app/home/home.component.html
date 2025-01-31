@@ -1,0 +1,62 @@
+<div style=" position: relative;">
+  <div class="d-flex align-items-stretch flex-row vh-100" style="min-width: 25em; min-height: 25em" *ngIf="auth_service.isAuthenticated | async">
+    <div class="d-flex flex-column border-end" style=" flex-basis: 30%; max-width: 30em; min-width: 10em; overflow: auto">
+      <div class="d-flex flex-row border-bottom py-1">
+        <div class="d-flex flex-fill flex-column ms-3">
+          <h5 class="m-0">{{(auth_service.currentUser | async)?.username}}</h5>
+          <span class="text-muted text-nowrap" style="margin-top: -0.4em; font-size:0.7em">{{"It's you"|translate}}</span>
+        </div>
+        <button type="button" class="btn btn-default" (click)="openSettings()">
+          <i class="bi bi-gear l-ico" ></i>
+        </button>
+        <button type="button" class="btn btn-default" (click)="auth_service.logOut()">
+          <i class="bi bi-box-arrow-right l-ico"></i>
+        </button>
+      </div>
+
+      <div class="p-3">
+        <div class="card mb-3">
+          <h6 class="card-header">{{'Channels' | translate}}</h6>
+          <div class="card-body p-0 d-flex flex-column">
+            <channels [Channels]="store.channels()" (SelectedChannelChange)="selectChannel($event)"></channels>
+            <!--<button type="button" class="btn btn-primary align-self-center m-2">-->
+              <!--{{'Add channel' | translate}} <i class="bi bi-plus l-ico"></i>-->
+            <!--</button>-->
+          </div>
+        </div>
+
+        <div class="card" *ngIf="store.selectedChannel()">
+          <h6 class="card-header">{{'Users' | translate}}</h6>
+          <div class="card-body p-0 d-flex flex-column" style="min-height: 20px">
+            <ul class="list-group list-group-flush" style="border-radius: 6px;">
+              <ng-container *ngFor="let user of store.selectedChannelState.users()">
+                <a class="list-group-item" style="cursor: default">
+                  <span class="badge" [ngClass]="{'bg-success': user.status, 'bg-danger': !user.status}" style="border-radius: 20px">&nbsp;&nbsp;</span>
+                  {{user.username}}</a>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-fill flex-column p-3 vh-100" *ngIf="store.selectedChannel()" style="min-width: 15em; overflow-x: auto">
+      <h5 class="m-0">{{store.selectedChannel()?.name}}</h5>
+      <div class="card my-3 flex-fill" style="overflow: auto;"  id="scrollMe">
+        <messages [Messages]="store.selectedChannelState().messages"></messages>
+      </div>
+
+      <div class="d-flex flex-row">
+        <input type="text" class="flex-fill form-control me-2" [(ngModel)]="messageText" (keydown)="keyDown($event)" [placeholder]="'Type message...'|translate"/>
+        <button type="button" class="btn btn-primary" (click)="addMessage()" [disabled]="!messageText()">
+          <i class="bi bi-arrow-right l-ico" ></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="store.isLoading()" class="d-flex" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background:rgba(255,255,255,0.5)">
+    <div class="spinner-border text-primary" style=" margin: auto;"></div>
+  </div>
+</div>
+

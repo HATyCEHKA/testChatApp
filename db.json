@@ -1,0 +1,730 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "user1",
+      "password": "pass1",
+      "status": true
+    },
+    {
+      "id": "2",
+      "username": "user2",
+      "password": "pass2",
+      "status": true
+    },
+    {
+      "id": "3",
+      "username": "user3",
+      "password": "pass3",
+      "status": false,
+      "is_online": true
+    },
+    {
+      "id": "10",
+      "username": "user10",
+      "password": "pass",
+      "status": false
+    }
+  ],
+  "channels": [
+    {
+      "id": "1",
+      "name": "channel1"
+    },
+    {
+      "id": "2",
+      "name": "channel2"
+    },
+    {
+      "id": "3",
+      "name": "channel3"
+    },
+    {
+      "id": "4",
+      "name": "channel4"
+    }
+  ],
+  "user_channels": [
+    {
+      "userId": 1,
+      "id": "1",
+      "channelId": 1
+    },
+    {
+      "userId": 2,
+      "id": "2",
+      "channelId": 1
+    },
+    {
+      "userId": 2,
+      "id": "3",
+      "channelId": 2
+    },
+    {
+      "id": "4",
+      "userId": 2,
+      "channelId": 3
+    },
+    {
+      "id": "5",
+      "userId": 3,
+      "channelId": 3
+    }
+  ],
+  "messages": [
+    {
+      "id": "1",
+      "userId": "1",
+      "channelId": 1,
+      "content": "hello 1_1"
+    },
+    {
+      "id": "2",
+      "userId": 2,
+      "channelId": 1,
+      "content": "hello 2_1"
+    },
+    {
+      "id": "3",
+      "userId": 3,
+      "channelId": 1,
+      "content": "hello 3_1"
+    },
+    {
+      "id": "4",
+      "userId": 2,
+      "channelId": 2,
+      "content": "hello 2_2"
+    },
+    {
+      "id": "5",
+      "userId": 3,
+      "channelId": 2,
+      "content": "hello 3_2"
+    },
+    {
+      "id": "2c67",
+      "channelId": "1",
+      "userId": "2",
+      "content": "testmessxage"
+    },
+    {
+      "id": "c19b",
+      "channelId": "1",
+      "userId": "2",
+      "content": "yuyu"
+    },
+    {
+      "id": "7b51",
+      "channelId": "2",
+      "userId": "2",
+      "content": "test 2"
+    },
+    {
+      "id": "03ae",
+      "channelId": "2",
+      "userId": "2",
+      "content": "test 3"
+    },
+    {
+      "id": "c428",
+      "channelId": "1",
+      "userId": "2",
+      "content": "test6"
+    },
+    {
+      "id": "2ca1",
+      "channelId": "1",
+      "userId": "2",
+      "content": "test68"
+    },
+    {
+      "id": "a422",
+      "channelId": "1",
+      "userId": "2",
+      "content": "test68"
+    },
+    {
+      "id": "5ea4",
+      "channelId": "1",
+      "userId": "2",
+      "content": "yuyuyu"
+    },
+    {
+      "id": "5103",
+      "channelId": "1",
+      "userId": "2",
+      "content": "iii"
+    },
+    {
+      "id": "d724",
+      "channelId": "1",
+      "userId": "2",
+      "content": "aa"
+    },
+    {
+      "id": "cf79",
+      "channelId": "1",
+      "userId": "2",
+      "content": "uiuiuiu"
+    },
+    {
+      "id": "bb0a",
+      "channelId": "1",
+      "userId": "2",
+      "content": "lklk"
+    },
+    {
+      "id": "19eb",
+      "channelId": "1",
+      "userId": "2",
+      "content": "uu"
+    },
+    {
+      "id": "5e7e",
+      "channelId": "1",
+      "userId": "2",
+      "content": "ew"
+    },
+    {
+      "id": "210b",
+      "channelId": "1",
+      "userId": "2",
+      "content": "ioiu"
+    },
+    {
+      "id": "46e1",
+      "channelId": "1",
+      "userId": "2",
+      "content": "yuyuu"
+    },
+    {
+      "id": "e2d7",
+      "channelId": "1",
+      "userId": "2",
+      "content": "dfdf"
+    },
+    {
+      "id": "cdd5",
+      "channelId": "1",
+      "userId": "2",
+      "content": "dfdf"
+    },
+    {
+      "id": "3a4e",
+      "channelId": "1",
+      "userId": "2",
+      "content": "qqq"
+    },
+    {
+      "id": "f48d",
+      "channelId": "1",
+      "userId": "2",
+      "content": "rr"
+    },
+    {
+      "id": "edcc",
+      "channelId": "1",
+      "userId": "2",
+      "content": "ssa"
+    },
+    {
+      "id": "b69f",
+      "channelId": "1",
+      "userId": "2",
+      "content": "adasdd"
+    },
+    {
+      "id": "8a8c",
+      "channelId": "1",
+      "userId": "1",
+      "content": "eeeee!!!!!!!"
+    },
+    {
+      "id": "5cc1",
+      "channelId": "1",
+      "userId": "2",
+      "content": "222222"
+    },
+    {
+      "id": "6745",
+      "channelId": "1",
+      "userId": "2",
+      "content": "444"
+    },
+    {
+      "id": "d0f7",
+      "channelId": "1",
+      "userId": "2",
+      "content": "ttrrt"
+    },
+    {
+      "id": "3d6e",
+      "channelId": "3",
+      "userId": "2",
+      "content": "222"
+    },
+    {
+      "id": "a9a5",
+      "channelId": "1",
+      "userId": "2",
+      "content": "date",
+      "date": "2025-01-30T17:31:04.894Z"
+    },
+    {
+      "id": "fa61",
+      "channelId": "1",
+      "userId": "2",
+      "content": "date22",
+      "date": "2025-01-30T17:46:12.053Z"
+    },
+    {
+      "id": "6206",
+      "channelId": "1",
+      "userId": "2",
+      "content": "date23",
+      "date": "2025-01-30T17:48:16.357Z"
+    },
+    {
+      "id": "e5da",
+      "channelId": "1",
+      "userId": "2",
+      "content": "yuyuy",
+      "date": "2025-01-30T17:55:36.674Z"
+    },
+    {
+      "id": "5692",
+      "channelId": "1",
+      "userId": "2",
+      "content": "eeeee",
+      "date": "2025-01-30T18:09:35.710Z"
+    },
+    {
+      "id": "2969",
+      "channelId": "1",
+      "userId": "2",
+      "content": "ffff",
+      "date": "2025-01-30T18:11:17.185Z"
+    },
+    {
+      "id": "26e9",
+      "channelId": "1",
+      "userId": "2",
+      "content": "ggg",
+      "date": "2025-01-30T18:19:34.550Z"
+    },
+    {
+      "id": "dde4",
+      "channelId": "1",
+      "userId": "2",
+      "content": "4545",
+      "date": "2025-01-30T18:21:02.000Z"
+    },
+    {
+      "id": "1165",
+      "channelId": "1",
+      "userId": "2",
+      "content": "111",
+      "date": "2025-01-30T18:25:05.134Z"
+    },
+    {
+      "id": "80d0",
+      "channelId": "1",
+      "userId": "2",
+      "content": "8989",
+      "date": "2025-01-30T18:25:51.615Z"
+    },
+    {
+      "id": "771a",
+      "channelId": "1",
+      "userId": "2",
+      "content": "333",
+      "date": "2025-01-30T18:27:53.681Z"
+    },
+    {
+      "id": "e99e",
+      "channelId": "1",
+      "userId": "2",
+      "content": "eeee",
+      "date": "2025-01-30T18:29:08.569Z"
+    },
+    {
+      "id": "100d",
+      "channelId": "1",
+      "userId": "2",
+      "content": "666",
+      "date": "2025-01-30T18:29:42.495Z"
+    },
+    {
+      "id": "9029",
+      "channelId": "1",
+      "userId": "2",
+      "content": "iii",
+      "date": "2025-01-30T18:33:02.134Z"
+    },
+    {
+      "id": "a308",
+      "channelId": "1",
+      "userId": "2",
+      "content": "yyy",
+      "date": "2025-01-30T18:33:19.646Z"
+    },
+    {
+      "id": "7192",
+      "channelId": "1",
+      "userId": "2",
+      "content": "ioo",
+      "date": "2025-01-30T18:35:05.988Z"
+    },
+    {
+      "id": "5a61",
+      "channelId": "1",
+      "userId": "2",
+      "content": "ttt",
+      "date": "2025-01-30T18:35:52.620Z"
+    },
+    {
+      "id": "1f88",
+      "channelId": "1",
+      "userId": "2",
+      "content": "kk",
+      "date": "2025-01-30T18:36:58.326Z"
+    },
+    {
+      "id": "559f",
+      "channelId": "1",
+      "userId": "2",
+      "content": "jjj",
+      "date": "2025-01-30T18:37:27.477Z"
+    },
+    {
+      "id": "f79d",
+      "channelId": "1",
+      "userId": "2",
+      "content": "444",
+      "date": "2025-01-30T18:37:35.314Z"
+    },
+    {
+      "id": "b845",
+      "channelId": "1",
+      "userId": "2",
+      "content": "999",
+      "date": "2025-01-30T18:38:22.012Z"
+    },
+    {
+      "id": "38b8",
+      "channelId": "1",
+      "userId": "1",
+      "content": "user1_message",
+      "date": "2025-01-30T18:40:42.549Z"
+    },
+    {
+      "id": "b0fa",
+      "channelId": "1",
+      "userId": "2",
+      "content": "user2_message",
+      "date": "2025-01-30T18:41:00.779Z"
+    },
+    {
+      "id": "156d",
+      "channelId": "1",
+      "userId": "1",
+      "content": " ",
+      "date": "2025-01-31T06:41:03.536Z"
+    },
+    {
+      "id": "a601",
+      "channelId": "1",
+      "userId": "1",
+      "content": " ",
+      "date": "2025-01-31T06:41:07.942Z"
+    },
+    {
+      "id": "803e",
+      "channelId": "1",
+      "userId": "1",
+      "content": "  t ",
+      "date": "2025-01-31T06:41:12.772Z"
+    },
+    {
+      "id": "70fa",
+      "channelId": "1",
+      "userId": "1",
+      "content": "ddd",
+      "date": "2025-01-31T06:41:21.216Z"
+    },
+    {
+      "id": "a72d",
+      "channelId": "1",
+      "userId": "1",
+      "content": "   ",
+      "date": "2025-01-31T06:41:25.296Z"
+    },
+    {
+      "id": "6c34",
+      "channelId": "1",
+      "userId": "1",
+      "content": "567",
+      "date": "2025-01-31T06:52:14.743Z"
+    },
+    {
+      "id": "b253",
+      "channelId": "1",
+      "userId": "1",
+      "content": "88789",
+      "date": "2025-01-31T06:52:18.643Z"
+    },
+    {
+      "id": "43c6",
+      "channelId": "1",
+      "userId": "1",
+      "content": "fgfg",
+      "date": "2025-01-31T06:54:36.967Z"
+    },
+    {
+      "id": "5fe0",
+      "channelId": "1",
+      "userId": "1",
+      "content": "sdfvsd",
+      "date": "2025-01-31T06:55:19.959Z"
+    },
+    {
+      "id": "bf25",
+      "channelId": "1",
+      "userId": "2",
+      "content": "111",
+      "date": "2025-01-31T06:55:49.279Z"
+    },
+    {
+      "id": "4f8a",
+      "channelId": "1",
+      "userId": "2",
+      "content": "1111",
+      "date": "2025-01-31T06:55:56.711Z"
+    },
+    {
+      "id": "280c",
+      "channelId": "2",
+      "userId": "2",
+      "content": "1111",
+      "date": "2025-01-31T06:56:02.303Z"
+    },
+    {
+      "id": "7195",
+      "channelId": "2",
+      "userId": "2",
+      "content": "11111",
+      "date": "2025-01-31T06:56:06.223Z"
+    },
+    {
+      "id": "0b5d",
+      "channelId": "2",
+      "userId": "2",
+      "content": "111",
+      "date": "2025-01-31T06:56:11.999Z"
+    },
+    {
+      "id": "3b2d",
+      "channelId": "1",
+      "userId": "2",
+      "content": "222",
+      "date": "2025-01-31T06:56:25.487Z"
+    },
+    {
+      "id": "101e",
+      "channelId": "1",
+      "userId": "2",
+      "content": "666",
+      "date": "2025-01-31T06:56:34.247Z"
+    },
+    {
+      "id": "4c19",
+      "channelId": "2",
+      "userId": "2",
+      "content": "222",
+      "date": "2025-01-31T06:56:44.839Z"
+    },
+    {
+      "id": "d4a5",
+      "channelId": "1",
+      "userId": "2",
+      "content": "777",
+      "date": "2025-01-31T07:05:22.006Z"
+    },
+    {
+      "id": "3a66",
+      "channelId": "1",
+      "userId": "2",
+      "content": "888",
+      "date": "2025-01-31T07:05:25.750Z"
+    },
+    {
+      "id": "56b8",
+      "channelId": "1",
+      "userId": "2",
+      "content": "999",
+      "date": "2025-01-31T07:05:33.750Z"
+    },
+    {
+      "id": "0046",
+      "channelId": "1",
+      "userId": "2",
+      "content": "999",
+      "date": "2025-01-31T07:05:36.206Z"
+    },
+    {
+      "id": "fcae",
+      "channelId": "1",
+      "userId": "2",
+      "content": "999",
+      "date": "2025-01-31T07:05:42.382Z"
+    },
+    {
+      "id": "0518",
+      "channelId": "1",
+      "userId": "2",
+      "content": "000",
+      "date": "2025-01-31T07:05:49.350Z"
+    },
+    {
+      "id": "ab03",
+      "channelId": "1",
+      "userId": "2",
+      "content": "ttt",
+      "date": "2025-01-31T07:31:01.043Z"
+    },
+    {
+      "id": "4ae7",
+      "channelId": "1",
+      "userId": "2",
+      "content": "yyy",
+      "date": "2025-01-31T07:31:08.868Z"
+    },
+    {
+      "id": "082a",
+      "channelId": "1",
+      "userId": "2",
+      "content": "yertert",
+      "date": "2025-01-31T07:31:12.388Z"
+    },
+    {
+      "id": "39c0",
+      "channelId": "1",
+      "userId": "2",
+      "content": "wsw",
+      "date": "2025-01-31T07:31:15.204Z"
+    },
+    {
+      "id": "fea5",
+      "channelId": "1",
+      "userId": "2",
+      "content": "nnn",
+      "date": "2025-01-31T07:35:21.490Z"
+    },
+    {
+      "id": "c296",
+      "channelId": "1",
+      "userId": "2",
+      "content": "ss",
+      "date": "2025-01-31T07:37:55.928Z"
+    },
+    {
+      "id": "1e2e",
+      "channelId": "1",
+      "userId": "2",
+      "content": "678",
+      "date": "2025-01-31T07:49:15.819Z"
+    },
+    {
+      "id": "3eff",
+      "channelId": "1",
+      "userId": "2",
+      "content": "6786867",
+      "date": "2025-01-31T07:49:18.745Z"
+    },
+    {
+      "id": "1aa5",
+      "channelId": "1",
+      "userId": "2",
+      "content": "e67e467",
+      "date": "2025-01-31T07:49:26.015Z"
+    },
+    {
+      "id": "bad7",
+      "channelId": "1",
+      "userId": "2",
+      "content": "467474",
+      "date": "2025-01-31T07:49:28.705Z"
+    },
+    {
+      "id": "19e0",
+      "channelId": "1",
+      "userId": "1",
+      "content": "111",
+      "date": "2025-01-31T07:50:07.027Z"
+    },
+    {
+      "id": "fedd",
+      "channelId": "1",
+      "userId": "1",
+      "content": "22121",
+      "date": "2025-01-31T07:50:10.051Z"
+    },
+    {
+      "id": "d531",
+      "channelId": "1",
+      "userId": "1",
+      "content": "3434",
+      "date": "2025-01-31T07:50:18.355Z"
+    },
+    {
+      "id": "ca3b",
+      "channelId": "1",
+      "userId": "1",
+      "content": "555",
+      "date": "2025-01-31T07:50:21.339Z"
+    },
+    {
+      "id": "ce72",
+      "channelId": "1",
+      "userId": "1",
+      "content": "5555",
+      "date": "2025-01-31T07:50:28.731Z"
+    },
+    {
+      "id": "43bb",
+      "channelId": "1",
+      "userId": "2",
+      "content": "777",
+      "date": "2025-01-31T07:50:35.467Z"
+    },
+    {
+      "id": "d6b8",
+      "channelId": "1",
+      "userId": "1",
+      "content": "666",
+      "date": "2025-01-31T07:50:47.851Z"
+    },
+    {
+      "id": "413c",
+      "channelId": "1",
+      "userId": "2",
+      "content": "333",
+      "date": "2025-01-31T07:50:52.019Z"
+    },
+    {
+      "id": "204f",
+      "channelId": "1",
+      "userId": "1",
+      "content": "444",
+      "date": "2025-01-31T07:50:58.195Z"
+    },
+    {
+      "id": "00f4",
+      "channelId": "1",
+      "userId": "1",
+      "content": "44",
+      "date": "2025-01-31T07:50:59.691Z"
+    }
+  ]
+}
