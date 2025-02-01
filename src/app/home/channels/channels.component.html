@@ -1,7 +1,27 @@
 <div>
-  <ul class="list-group list-group-flush" style="border-bottom-right-radius: 6px; border-bottom-left-radius: 6px;" *ngIf="Channels()">
-    <ng-container *ngFor="let channel of Channels()">
-      <a class="list-group-item" (click)="select(channel)" [ngClass]="{active: channel==SelectedChannel()}" style="cursor: default">{{channel.name}}</a>
+  <ul class="list-group list-group-flush" style="" *ngIf="store.channels()">
+    <ng-container *ngFor="let channel of store.channels()">
+      <a class="list-group-item" (click)="select(channel)" [ngClass]="{active: channel==store.selectedChannel()}" style="cursor: default">{{channel.name}}</a>
     </ng-container>
   </ul>
+  <button type="button" class="btn btn-primary align-self-center m-2" (click)="openModal(template)">
+    {{'Add channel' | translate}} <i class="bi bi-plus l-ico"></i>
+  </button>
 </div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{'Add channel' | translate}}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" >
+    <input type="text" class="flex-fill form-control me-2" [(ngModel)]="newChannelName" (keydown)="keyDown($event)"  autofocus/>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default m-2" (click)="modalRef?.hide()">{{'Cancel' | translate}}</button>
+    <button type="button" class="btn btn-primary m-2" (click)="addChannel()">{{'OK' | translate}}</button>
+  </div>
+</ng-template>
+

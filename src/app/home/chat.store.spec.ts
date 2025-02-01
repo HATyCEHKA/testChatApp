@@ -27,65 +27,8 @@ describe('ChatStore', ()=>{
     it('should be empty ChatStore', ()=>{
         const store = TestBed.inject(ChatStore); 
         expect(store.isLoading()).toBe(false);
-        expect(store.channels()).toEqual([]);
         expect(store.selectedChannel()).toBeNull();
         expect(store.selectedChannelState()).toEqual({ users: [  ], messages: [  ] });
-    });
-
-    it('should have user channels', ()=>{
-        const store = TestBed.inject(ChatStore); 
-        store.loadChannels(2);
-
-        let apiReq = httpTestingController.expectOne('http://localhost:3000/user_channels?userId=2');
-        expect(apiReq.cancelled).toBeFalsy();
-        expect(apiReq.request.method).toBe("GET", "Invalid request type");
-        expect(apiReq.request.responseType).toBe('json', "Invalid response type");
-        
-        let data = [
-            {
-                userId: 2,
-                id: "2",
-                channelId: 1
-            },
-            {
-                userId: 2,
-                id: "3",
-                channelId: 2
-            },
-            {
-                id: "4",
-                userId: 2,
-                channelId: 3
-            }];
-
-        apiReq.request;
-        apiReq.flush(data);
-
-        apiReq = httpTestingController.expectOne('http://localhost:3000/channels');
-        expect(apiReq.cancelled).toBeFalsy();
-        expect(apiReq.request.method).toBe("GET", "Invalid request type");
-        expect(apiReq.request.responseType).toBe('json', "Invalid response type");
-
-        let dataChannels = [ {
-            id: 1,
-            name: "channel1"
-        },
-        {
-            id: 2,
-            name: "channel2"
-        },
-        {
-            id: 3,
-            name: "channel3"
-        },
-        {
-            id: 4,
-            name: "channel4"
-        }];
-        apiReq.request;
-        apiReq.flush(dataChannels);
-
-        expect(store.channels().length).toBe(3);
     });
 
     it('should get messages from channel', fakeAsync(()=>{

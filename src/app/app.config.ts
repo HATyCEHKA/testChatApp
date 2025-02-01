@@ -1,4 +1,4 @@
-import {ApplicationConfig, importProvidersFrom, provideZoneChangeDetection} from '@angular/core';
+import {APP_INITIALIZER, ApplicationConfig, importProvidersFrom, provideZoneChangeDetection} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
@@ -8,6 +8,7 @@ import {StoreModule} from "@ngrx/store";
 import {EffectsModule} from "@ngrx/effects";
 import {AuthEffects} from "./store/auth.effects";
 import {authFeature} from './store/auth.reducers';
+import {BsModalService} from "ngx-bootstrap/modal";
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
   new TranslateHttpLoader(http, './i18n/', '.json');
@@ -26,7 +27,24 @@ export const appConfig: ApplicationConfig = {
       },}),
       StoreModule.forRoot({}),
       StoreModule.forFeature( authFeature ),
-      EffectsModule.forRoot([AuthEffects])
-    ])
+      EffectsModule.forRoot([AuthEffects]),
+    ]),
+
+    BsModalService,
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      deps: [BsModalService],
+      useFactory: (bsModalService: BsModalService) => {
+        return () => {
+          bsModalService.config.animated = true;
+          bsModalService.config.focus = true;
+          bsModalService.config.ignoreBackdropClick = false;
+          bsModalService.config.keyboard = true;
+          bsModalService.config.class = "modal-xs";
+        };
+      }
+    }
+
   ]
 };

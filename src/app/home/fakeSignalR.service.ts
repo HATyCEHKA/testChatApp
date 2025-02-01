@@ -13,7 +13,9 @@ export class FakeSignalRService{
   }
 
   subscribeNewMessageFromServer(channelId: number, maxDate:Date):Observable<Message>{
-    let lastDate = maxDate.toISOString();
+    let lastDate = "";
+    if(!isNaN(maxDate.getTime()))
+      lastDate = maxDate.toISOString();
     //console.log("FakeSignalRService", lastDate);
     return interval(1000).pipe(
         switchMap(()=>{

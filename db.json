@@ -10,7 +10,7 @@
       "id": "2",
       "username": "user2",
       "password": "pass2",
-      "status": false
+      "status": true
     },
     {
       "id": "3",
@@ -41,6 +41,10 @@
     {
       "id": "4",
       "name": "channel4"
+    },
+    {
+      "id": "dd6a",
+      "name": "hghgh"
     }
   ],
   "user_channels": [
@@ -55,19 +59,84 @@
       "channelId": 1
     },
     {
-      "userId": 2,
-      "id": "3",
-      "channelId": 2
+      "id": "8522",
+      "userId": "2",
+      "channelId": "8615"
     },
     {
-      "id": "4",
-      "userId": 2,
-      "channelId": 3
+      "id": "e499",
+      "userId": "2",
+      "channelId": "304a"
     },
     {
-      "id": "5",
-      "userId": 3,
-      "channelId": 3
+      "id": "f557",
+      "userId": "2",
+      "channelId": "fb11"
+    },
+    {
+      "id": "939f",
+      "userId": "2",
+      "channelId": "c09d"
+    },
+    {
+      "id": "28a1",
+      "userId": "2",
+      "channelId": "7418"
+    },
+    {
+      "id": "5f42",
+      "userId": "2",
+      "channelId": "5d7c"
+    },
+    {
+      "id": "5fb7",
+      "userId": "2",
+      "channelId": "6226"
+    },
+    {
+      "id": "350a",
+      "userId": "2",
+      "channelId": "91cb"
+    },
+    {
+      "id": "a2bf",
+      "userId": "1",
+      "channelId": "3"
+    },
+    {
+      "id": "0a87",
+      "userId": "2",
+      "channelId": "3"
+    },
+    {
+      "id": "99b1",
+      "userId": "10",
+      "channelId": "3"
+    },
+    {
+      "id": "d47d",
+      "userId": "2",
+      "channelId": "dd6a"
+    },
+    {
+      "id": "920b",
+      "userId": "3",
+      "channelId": "dd6a"
+    },
+    {
+      "id": "3478",
+      "userId": "10",
+      "channelId": "dd6a"
+    },
+    {
+      "id": "afe2",
+      "userId": "2",
+      "channelId": "2"
+    },
+    {
+      "id": "6337",
+      "userId": "3",
+      "channelId": "2"
     }
   ],
   "messages": [
@@ -560,6 +629,13 @@
       "userId": "2",
       "content": "222",
       "date": "2025-01-31T10:37:04.902Z"
+    },
+    {
+      "id": "01f3",
+      "channelId": "2",
+      "userId": "2",
+      "content": "gyty",
+      "date": "2025-02-01T16:52:47.237Z"
     }
   ]
 }

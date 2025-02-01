@@ -1,0 +1,9 @@
+<div>
+  <ul class="list-group list-group-flush" style="border-radius: 6px;">
+    <ng-container *ngFor="let user of Users()">
+      <a class="list-group-item" style="cursor: default" [ngClass]="{active: SelectedUsers().indexOf(user.id)>=0}" (click)="select(user)">
+        <span class="badge" [ngClass]="{'bg-success': user.status, 'bg-danger': !user.status}" style="border-radius: 20px">&nbsp;&nbsp;</span>
+        {{user.username}}</a>
+    </ng-container>
+  </ul>
+</div>
