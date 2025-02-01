@@ -1,4 +1,4 @@
-<div>
+<div class="d-flex flex-column">
   <ul class="list-group list-group-flush" style="" *ngIf="store.channels()">
     <ng-container *ngFor="let channel of store.channels()">
       <a class="list-group-item" (click)="select(channel)" [ngClass]="{active: channel==store.selectedChannel()}" style="cursor: default">{{channel.name}}</a>
