@@ -5,7 +5,7 @@ import { of, tap, switchMap, pipe,catchError } from 'rxjs';
 import {AuthApiService} from "../login/auth_api_service";
 import {authActions} from "./auth.actions";
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import {User} from "../model/user";
+import {AuthUser} from "../model/user";
 
 
 
@@ -38,7 +38,7 @@ export class AuthEffects {
   LogInSuccess: Observable<any> =  createEffect(() =>
       this.actions.pipe(
         ofType(authActions.loginSuccess),
-        tap((data:User) => {
+        tap((data:AuthUser) => {
           localStorage.setItem('authData', JSON.stringify(data));
           this.router.navigateByUrl('/');
         })
@@ -59,8 +59,26 @@ export class AuthEffects {
         });
       }),
     ),
-
     { dispatch: false }
   );
+
+
+  UpdateUser =  createEffect(() =>
+    this.actions.pipe(
+      ofType(authActions.updateUser),
+      switchMap((data: any) => {
+        return this.authService.updateUser(data.id, data.newUsername, data.newPassword).pipe(
+          switchMap((user) => {
+            if(user && user.username)
+              return of(authActions.logout(user));
+            return of(authActions.updateUserFailure({ error: "Empty response" }));
+          }),
+          catchError((e) => {
+            return of(authActions.updateUserFailure({ error: e.message }));
+          }),
+        );})
+    )
+  );
+
 }
 

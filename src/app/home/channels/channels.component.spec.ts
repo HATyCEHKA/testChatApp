@@ -1,18 +1,17 @@
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { ChannelsComponent } from './channels.component';
-import {AuthService} from '../../login/auth.service';
 import {ChannelsStore} from './channels.store';
-import {ChatApiService} from '../chat-api.service';
-import {HttpClientTestingModule, HttpTestingController, provideHttpClientTesting} from '@angular/common/http/testing';
-import {FakeSignalRService} from '../fakeSignalR.service';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {authSelectors} from '../../store/auth.selectors';
 import authUserSelector = authSelectors.authUserSelector;
 import {BsModalService} from "ngx-bootstrap/modal";
+import {signal, WritableSignal} from "@angular/core";
+import {Channel} from "../../model/chat";
+
 
 describe('ChannelsComponent', () => {
-
   const initialState = {
     isAuthenticated: false,
     user: {
@@ -23,19 +22,41 @@ describe('ChannelsComponent', () => {
     },
     errorMessage: null
   };
-  let httpTestingController: HttpTestingController;
   let store: MockStore;
+
+  const channels = [ {
+    id: 1,
+    name: "channel1"
+  },
+  {
+    id: 2,
+    name: "channel2"
+  }]
+
+  class MockChannelsStore{
+    channels:WritableSignal<Channel[]|null> = signal([]);
+    isLoading = signal(false);
+    selectedChannel:WritableSignal<Channel|null> =  signal( null);
+
+    selectChannel (channel: Channel|null): void{
+      this.selectedChannel.set(channel);
+    };
+
+    loadChannels (id: number): void{
+      this.channels.set(channels);
+    }
+  }
 
   beforeEach(async () => {
 
     await TestBed.configureTestingModule({
-      imports: [ChannelsComponent, TranslateModule.forRoot(), HttpClientTestingModule],
-      providers: [TranslateService, BsModalService, ChannelsStore, AuthService, ChatApiService, provideHttpClientTesting(), FakeSignalRService, provideMockStore({ initialState })]
-    }).compileComponents();
+      imports: [TranslateModule.forRoot(), HttpClientTestingModule],
+      providers: [BsModalService, provideMockStore({ initialState })]
+    })
+      .overrideComponent(ChannelsComponent, {set: {providers: [{provide: ChannelsStore, useValue: new MockChannelsStore()}]}} )
+      .compileComponents();
 
     store = TestBed.inject(MockStore);
-    httpTestingController = TestBed.inject(HttpTestingController);
-
     let mockauthUserSelector = store.overrideSelector(authUserSelector,  {
       id: 1,
       username: 'user1',
@@ -52,57 +73,33 @@ describe('ChannelsComponent', () => {
     fixture.destroy();
   });
 
-  it('should load channels and change channel on click', fakeAsync(() => {
+
+  it('should call "loadChannels" on ngOnInit', fakeAsync(() => {
+     const fixture = TestBed.createComponent(ChannelsComponent);
+     let store = fixture.debugElement.injector.get(ChannelsStore);
+     expect(store.channels()).toEqual([]);
+     let spyLoadChannels = spyOn(store, 'loadChannels');
+     fixture.detectChanges();
+     expect(spyLoadChannels).toHaveBeenCalled();
+  }));
+
+
+  it('should show channels from store and change channel on click', fakeAsync(() => {
     const fixture = TestBed.createComponent(ChannelsComponent);
     const app = fixture.componentInstance;
-
-    app.ngOnInit();
-
-    let apiReq = httpTestingController.expectOne({method:'GET',url:'http://localhost:3000/user_channels?userId=1'});
-
-    let data = [
-      {
-        userId: 1,
-        id: "1",
-        channelId: 1
-      }, {
-        userId: 1,
-        id: "2",
-        channelId: 2
-      }];
-
-    apiReq.request;
-    apiReq.flush(data);
-
-    apiReq = httpTestingController.expectOne({method:'GET', url:'http://localhost:3000/channels'});
-    let dataChannels = [ {
-      id: 1,
-      name: "channel1"
-    },
-      {
-        id: 2,
-        name: "channel2"
-      }];
-    apiReq.request;
-    apiReq.flush(dataChannels);
-
     fixture.detectChanges();
 
     const compiled = fixture.debugElement.nativeElement;
-
     let items = compiled.querySelectorAll('a');
     expect(items.length).toBe(2);
 
     app.ChannelSelected.subscribe(channel => {
-      expect(channel.id).toBe(1);
+      expect(channel.id).toBe(2);
     })
 
-    items[0].click();
+    items[1].click();
     tick();
     fixture.detectChanges();
-    //const onClickMock = spyOn(items[0], 'click');
-    //items[0].triggerEventHandler('click', null);
-    //expect(onClickMock).toHaveBeenCalled();
-  }))
+  }));
 
 });

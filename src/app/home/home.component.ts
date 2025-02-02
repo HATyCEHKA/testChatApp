@@ -22,15 +22,12 @@ import {SelectedUsersComponent} from "./selected_users/selected_users.component"
 })
 
 export class HomeComponent implements OnInit {
-  constructor(protected auth_service:AuthService, private router: Router, private modalService: BsModalService, private chatApiService:ChatApiService) {}
+  constructor(protected auth_service:AuthService, private router: Router, private modalService: BsModalService) {}
 
   protected readonly store = inject(ChatStore);
   protected messageText = signal<string>("");
   protected isChannelsLoading = signal(false);
   protected modalRef?: BsModalRef;
-
-  protected allUsers = this.chatApiService.GetAllUsers();
-  //protected selectedUsers: User[] = [];
   protected selectedUsers: number[] = [];
 
   ngOnInit() {}
@@ -67,7 +64,7 @@ export class HomeComponent implements OnInit {
   }
 
   protected openModal(template: TemplateRef<void>) {
-    this.selectedUsers = this.store.selectedChannelState.users().map(u=>u.id);
+    this.selectedUsers = this.store.selectedChannelState.usersIds();
     this.modalRef = this.modalService.show(template);
   }
 

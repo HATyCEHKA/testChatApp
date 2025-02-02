@@ -1,17 +1,48 @@
+<ul class="nav nav-pills m-3">
+  <li class="nav-item">
+    <a class="nav-link active" href="">
+      <i class="bi bi-chat-dots l-ico" ></i>
+    </a>
+  </li>
+</ul>
+
 <div *ngIf="auth_service.currentUser | async" class="p-3 d-flex vh-100">
-  <div style="margin: auto">
-    <div class="row">
-      <div class="col text-end">{{'Login'|translate}}:</div>
-      <div class="col">{{(auth_service.currentUser | async)?.username}}</div>
+  <div style="margin: auto; min-width: 200px">
+    <div class="row p-1" *ngIf="!isEditingPass()">
+      <div class="col-6 text-end">{{'Login'|translate}}:</div>
+      <div class="col-6">{{(auth_service.currentUser | async)?.username}}</div>
     </div>
-    <div class="row">
-      <div class="col text-end">{{'Password'|translate}}:</div>
-      <div class="col">{{(auth_service.currentUser | async)?.password}}</div>
+    <div class="row p-1" *ngIf="!isEditingPass()">
+        <button type="button" class="col-12 btn btn-secondary w-100" (click)="isEditingPass.set(true)">{{'Change login/password' | translate}}</button>
     </div>
-    <div class="row">
-      <div class="col text-end d-flex"><span style="margin: auto">{{'Language'|translate}}:</span></div>
-      <div class="col">
-        <select class="form-select" [value]="translate.currentLang" (change)="changeLang($event.target)" >
+
+    <div *ngIf="isEditingPass()" class="was-validated">
+      <div class="row p-1">
+        <div class="col-6 text-end align-content-center">{{'Login'|translate}}:</div>
+        <div class="col-6">
+          <input class="form-control" [value]="(auth_service.currentUser | async)?.username" #userName  autofocus required>
+        </div>
+      </div>
+      <div class="row  p-1">
+        <div class="col-6 text-end align-content-center">{{'Password'|translate}}:</div>
+        <div class="col-6"><input class="form-control" #password required ></div>
+      </div>
+      <div class="row  p-1" >
+        <span class="text-warning text-end">{{'You will need to log in again after changing data' | translate}}</span>
+        <span class="text-danger">{{auth_service.errorMessage | async}}</span>
+      </div>
+      <div class="row  p-1" >
+        <div class="col-6 text-end"></div>
+        <div class="col-6">
+          <button type="button" class="btn btn-primary w-100" (click)="do(userName.value, password.value)">{{'Save' | translate}}</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row py-4">
+      <div class="col-6 text-end align-content-center">{{'Language'|translate}}:</div>
+      <div class="col-6">
+        <select class="form-select" [value]="translate.currentLang" (change)="changeLang($event.target)">
           <option (click)="translate.use('en')"> en</option>
           <option (click)="translate.use('ru')"> ru</option>
         </select>

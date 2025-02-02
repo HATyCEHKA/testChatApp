@@ -1,32 +1,42 @@
-import {patchState, signalStore, withMethods, withState} from '@ngrx/signals';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withHooks,
+  withMethods, withProps,
+  withState
+} from '@ngrx/signals';
 import {Channel, Message} from "../model/chat";
-import {inject} from "@angular/core";
+import {computed, inject} from "@angular/core";
 import {ChatApiService} from "../home/chat-api.service";
 import {rxMethod} from "@ngrx/signals/rxjs-interop";
-import {debounceTime, distinctUntilChanged, switchMap, tap, pipe, catchError, of} from "rxjs";
+import {debounceTime, distinctUntilChanged, switchMap, tap, pipe, catchError, of, interval} from "rxjs";
 import {tapResponse} from "@ngrx/operators";
 import {User} from "../model/user";
 import {FakeSignalRService} from "../home/fakeSignalR.service";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 
 export interface SelectedChannelState {
-  users: User[];
   messages: Message[];
+  usersIds: any[];
 };
 
 type ChatState = {
   isLoading: boolean;
   selectedChannel: Channel | null;
   selectedChannelState: SelectedChannelState;
+  allUsers:User[]
 };
 
 const initialState: ChatState = {
   isLoading: false,
   selectedChannel: null,
   selectedChannelState: {
-    users:[],
-    messages: []
-  }
+    messages: [],
+    usersIds: []
+  },
+  allUsers: []
 };
 
 export interface AddMessageData {
@@ -34,8 +44,35 @@ export interface AddMessageData {
   content: string;
 };
 
+
 export const ChatStore = signalStore(
   withState(initialState),
+
+  withComputed(({ selectedChannelState, allUsers }) => ({
+    selectedChannelUsers: computed(()=>{
+      if(!selectedChannelState().usersIds || !selectedChannelState().usersIds.length)
+        return [];
+      return allUsers().filter(user=>selectedChannelState().usersIds.indexOf(user.id)>=0);
+    })
+  })),
+
+  withHooks((store, chatService = inject(ChatApiService)) => {
+    return {
+      onInit() {
+        chatService.GetAllUsers()
+          .pipe(takeUntilDestroyed())
+          .subscribe((userIds:User[]) => patchState(store, { allUsers: userIds }));
+
+        //Иммитация обновления статусов пользователей.
+        interval(5_000).pipe(
+          takeUntilDestroyed(),
+          switchMap(()=> chatService.GetAllUsers()),
+        ).subscribe((userIds:User[]) => patchState(store, { allUsers: userIds }));
+      },
+      onDestroy() {},
+    };
+  }),
+
   withMethods((store, chatService = inject(ChatApiService), fakeSignalRService = inject(FakeSignalRService)) => {
 
     function selectChannel(channel: Channel|null): void {
@@ -47,10 +84,11 @@ export const ChatStore = signalStore(
         loadChannelMessages(channel.id);
       }
       else{
-        let users: User[] = [];
-        let messages: Message[] = [];
-        patchState(store, (state:ChatState) => ({ selectedChannelState: { ...state.selectedChannelState, users}}));
-        patchState(store, (state:ChatState) => ({ selectedChannelState: { ...state.selectedChannelState, messages}}));
+        let selectedChannelState = {
+          messages: [],
+            usersIds: []
+        };
+        patchState(store, (state:ChatState) => ({ selectedChannelState}));
       }
     }
 
@@ -65,15 +103,14 @@ export const ChatStore = signalStore(
 
     const loadChannelUsers = rxMethod<number>(
       pipe(
-        debounceTime(500),
+        debounceTime(300),
         distinctUntilChanged(),
         tap(() => patchState(store, { isLoading: true })),
         switchMap((channelId: number) => {
-          //console.log("loadChannelUsers", channelId);
-          return chatService.GetChannelUsers(channelId).pipe(
+          return chatService.GetChannelUsersIds(channelId).pipe(
             tapResponse({
-              next: (users:User[]) => {
-                patchState(store, (state:ChatState) => ({ selectedChannelState: { ...state.selectedChannelState, users }, isLoading: false}));
+              next: (usersIds:number[]) => {
+                patchState(store, (state:ChatState) => ({ selectedChannelState: { ...state.selectedChannelState, usersIds }, isLoading: false}));
               },
               error: (err) => {
                 patchState(store, { isLoading: false });
@@ -81,13 +118,13 @@ export const ChatStore = signalStore(
               },
             })
           );
-        })
+        }),
       )
     )
 
     const loadChannelMessages = rxMethod<number>(
       pipe(
-        debounceTime(500),
+        debounceTime(300),
         distinctUntilChanged(),
         tap(() => patchState(store, { isLoading: true })),
         switchMap((channelId: number) => {
@@ -147,9 +184,9 @@ export const ChatStore = signalStore(
             id = -1;
           return chatService.UpdateChannelUsers(id, data).pipe(
             tapResponse({
-              next: (users:User[]) => {
-                console.log("UPDATED USERS:", users);
-                patchState(store, (state:ChatState) => ({ selectedChannelState: { ...state.selectedChannelState, users }, isLoading: false}));
+              next: (usersIds:any[]) => {
+                console.log("UPDATED USERS:", usersIds);
+                patchState(store, (state:ChatState) => ({ selectedChannelState: { ...state.selectedChannelState, usersIds }, isLoading: false}));
               },
               error: (err) => {
                 patchState(store, { isLoading: false });
@@ -161,7 +198,7 @@ export const ChatStore = signalStore(
       )
     )
 
-    return { selectChannel, addChannelMessage, loadChannelMessages,  loadChannelUsers, updateChannelUsers};
+    return { selectChannel, addChannelMessage, updateChannelUsers};
   })
 );
 

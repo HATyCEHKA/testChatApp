@@ -28,19 +28,31 @@ export class ChatApiService{
       );
   }
 
-  public GetChannelUsers(channelId:number): Observable<User[]>{
-    return this.http.get(this.BASE_URL + 'user_channels', {params: {channelId: channelId}})
+  // public GetChannelUsers(channelId:number): Observable<User[]>{
+  //   return this.http.get(this.BASE_URL + 'user_channels', {params: {channelId: channelId}})
+  //     .pipe(
+  //       switchMap(((userChannels:any)=>{
+  //         if(!userChannels || !userChannels.length)
+  //           return of([]);
+  //         let userIds = userChannels.map((i:any)=>i.userId.toString());
+  //         return this.http.get<User[]>(this.BASE_URL + 'users').pipe(
+  //           map((users:User[])=>{
+  //             return users.filter((el:User)=> userIds.indexOf(el.id.toString())>=0)
+  //           }),
+  //           catchError(()=>of([]))
+  //           );
+  //       })),
+  //       catchError(()=>of([]))
+  //     );
+  // }
+
+  public GetChannelUsersIds(channelId:number): Observable<any[]>{
+    return this.http.get<any[]>(this.BASE_URL + 'user_channels', {params: {channelId: channelId}})
       .pipe(
-        switchMap(((userChannels:any)=>{
+        switchMap(((userChannels:any[])=>{
           if(!userChannels || !userChannels.length)
             return of([]);
-          let userIds = userChannels.map((i:any)=>i.userId.toString());
-          return this.http.get<User[]>(this.BASE_URL + 'users').pipe(
-            map((users:User[])=>{
-              return users.filter((el:User)=> userIds.indexOf(el.id.toString())>=0)
-            }),
-            catchError(()=>of([]))
-            );
+          return of(userChannels.map((i:any)=>i.userId as any ));
         })),
         catchError(()=>of([]))
       );
@@ -92,15 +104,15 @@ export class ChatApiService{
     return this.http.delete(this.BASE_URL + 'user_channels/' + id);
   }
 
-  private AddUsersToChannel(channelId:number, users: number[]): Observable<User[]>{
+  private AddUsersToChannel(channelId:number, users: number[]): Observable<number[]>{
     const addIds = users.map(userId => this.AddUserToChannel(channelId, userId));
     return forkJoin(addIds).pipe(
-      switchMap(() => this.GetChannelUsers(channelId)),
+      switchMap(() => this.GetChannelUsersIds(channelId)),
       tap((e) => console.debug("[AddUsersToChannel]", e))
     );
   }
 
-  public UpdateChannelUsers(channelId:number, users: number[]): Observable<User[]>{
+  public UpdateChannelUsers(channelId:number, users: number[]): Observable<number[]>{
     return this.http.get(this.BASE_URL + 'user_channels', {params: {channelId: channelId}})
       .pipe(
         switchMap(((userChannels:any)=>{

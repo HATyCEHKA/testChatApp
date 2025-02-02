@@ -12,5 +12,12 @@
   "Cancel": "Отмена",
   "Add channel": "Создать канал",
 
+  "Language": "Язык",
+  "You will need to log in again after changing data": "После изменения данных нужно будет заново войти",
+
+  "Save": "Сохранить",
+  "Change login/password": "Изменить логин/пароль",
+
+
   "": ""
 }
